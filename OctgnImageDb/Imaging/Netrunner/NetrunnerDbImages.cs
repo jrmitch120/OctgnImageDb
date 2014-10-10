@@ -1,5 +1,4 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using OctgnImageDb.Imaging.Cache;
 using OctgnImageDb.Logging;
 using OctgnImageDb.Models;
