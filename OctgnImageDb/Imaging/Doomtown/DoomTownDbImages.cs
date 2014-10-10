@@ -3,6 +3,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Helpers;
 using OctgnImageDb.Imaging.Cache;
+using OctgnImageDb.Logging;
 using OctgnImageDb.Models;
 using OctgnImageDb.Octgn;
 
@@ -23,6 +24,8 @@ namespace OctgnImageDb.Imaging.Doomtown
 
         public void GetCardImages(Game game)
         {
+            LogManager.GetLogger().Log(game.Name, LogType.Game);
+
             var wc = new WebClient();
 
             dynamic apiSets = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/sets/"));
@@ -33,7 +36,14 @@ namespace OctgnImageDb.Imaging.Doomtown
                 var set = game.Sets.FindSetByName(setName);
 
                 if (set == null || !set.ImagesNeeded)
+                {
+                    if(set == null)
+                        LogManager.GetLogger().Log("Unable to map set: set.Name", LogType.Error);
+
                     continue;
+                }
+
+                LogManager.GetLogger().Log(set.Name, LogType.Set);
 
                 dynamic apiCards = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/set/" + apiSet.code));
 
@@ -45,15 +55,25 @@ namespace OctgnImageDb.Imaging.Doomtown
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {
-                        byte[] image = _cache.GetImage(card.Id);
-
-                        if (image == null)
+                        try
                         {
-                            image = wc.DownloadData(ApiBaseUrl + apiCard.imagesrc);
-                            _cache.SaveImage(card.Id, ".jpg", image);
-                        }
+                            byte[] image = _cache.GetImage(card.Id);
 
-                        _imageWriter.WriteImage(OctgnPaths.CardImagePath(game.Id, set.Id, card.Id, ".jpg"), image);
+                            if (image == null)
+                            {
+                                image = wc.DownloadData(ApiBaseUrl + apiCard.imagesrc);
+                                _cache.SaveImage(card.Id, ".jpg", image);
+                            }
+
+                            _imageWriter.WriteImage(OctgnPaths.CardImagePath(game.Id, set.Id, card.Id, ".jpg"), image);
+                        }
+                        catch (WebException ex)
+                        {
+                            LogManager.GetLogger().Log("Unable to find: " + card.Name, LogType.Card);
+
+                            if (((HttpWebResponse)ex.Response).StatusCode != HttpStatusCode.NotFound)
+                                throw;
+                        }
                     }
                 }
             }

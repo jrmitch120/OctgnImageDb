@@ -49,6 +49,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build.Framework" />
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
@@ -69,6 +70,13 @@
     <Compile Include="Imaging\ImageProviderAttribute.cs" />
     <Compile Include="Imaging\Netrunner\NetrunnerDbImages.cs" />
     <Compile Include="Imaging\Starwars\TopTierDbImages.cs" />
+    <Compile Include="Logging\ConsoleLogFactory.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
+    <Compile Include="Logging\ILogFactory.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Logging\LogType.cs" />
+    <Compile Include="Logging\MessageFormatter.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Set.cs" />
