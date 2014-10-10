@@ -3,12 +3,11 @@ using System.Configuration;
 using System.Linq;
 using Ninject;
 using OctgnImageDb.Imaging;
-using OctgnImageDb.Imaging.Doomtown;
-using OctgnImageDb.Imaging.Netrunner;
-using OctgnImageDb.Imaging.Starwars;
+using OctgnImageDb.Imaging.Cache;
 using OctgnImageDb.Logging;
 using OctgnImageDb.Models;
 using OctgnImageDb.Octgn;
+using OctgnImageDb.Setup;
 
 namespace OctgnImageDb
 {
@@ -18,12 +17,29 @@ namespace OctgnImageDb
         {
             try
             {
-                var kernel = new StandardKernel();
+                var kernel = Init.Container();
 
-                kernel.Bind<IImageProvider>().To<NetrunnerDbImages>();
-                kernel.Bind<IImageProvider>().To<DoomtownDbImages>();
-                kernel.Bind<IImageProvider>().To<TopTierDbImages>();
+                var packManager = kernel.Get<ImagePackManager>();
 
+                if (packManager.ImagePacksAvailavble)
+                {
+                    Console.Write("Image packs detected.  Would you like to import them? (y/n): ");
+                    
+                    while (true)
+                    {
+                        var keypress = Console.ReadKey(true);
+                        if (keypress.KeyChar.ToString().ToLower() == "y" || keypress.KeyChar.ToString().ToLower() == "n")
+                        {
+                            Console.WriteLine(keypress.KeyChar);
+
+                            if (keypress.KeyChar == 'y')
+                                packManager.ImportImagePacks();
+
+                            break;
+                        }
+                    }
+                }
+                    
                 var games = kernel.Get<GameCollector>().CollectGames();
 
                 // Ignore sets as indicated.  Usually markers
@@ -42,7 +58,7 @@ namespace OctgnImageDb
                 LogManager.GetLogger().Log(ex.Message, LogType.Error);
             }
 
-            LogManager.GetLogger().Log("Import Complete!");
+            LogManager.GetLogger().Log("Complete!");
 
             Console.ReadKey();
         }

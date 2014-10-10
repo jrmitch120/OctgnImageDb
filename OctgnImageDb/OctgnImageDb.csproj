@@ -55,6 +55,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,9 +63,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Imaging\Cache\ImageCache.cs" />
+    <Compile Include="Imaging\Cache\CachePaths.cs" />
     <Compile Include="Imaging\Doomtown\DoomTownDbImages.cs" />
     <Compile Include="Imaging\IImageProvider.cs" />
     <Compile Include="Imaging\ImageEngine.cs" />
+    <Compile Include="Imaging\Cache\ImagePackManager.cs" />
     <Compile Include="Imaging\ImageProviderAttribute.cs" />
     <Compile Include="Imaging\Netrunner\NetrunnerDbImages.cs" />
     <Compile Include="Imaging\Starwars\TopTierDbImages.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="Octgn\SetCollector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Setup\Init.DependencyInjection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

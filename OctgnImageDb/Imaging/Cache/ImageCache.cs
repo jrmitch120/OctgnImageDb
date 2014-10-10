@@ -7,17 +7,11 @@ namespace OctgnImageDb.Imaging.Cache
     public class ImageCache
     {
         private readonly ImageWriter _imageWriter;
-        private readonly string _cacheLocation;
+        private readonly string _cacheLocation = CachePaths.CacheDirectory;
         
         public ImageCache(ImageWriter imageWriter)
         {
             _imageWriter = imageWriter;
-
-            #if DEBUG
-                _cacheLocation = AppDomain.CurrentDomain.BaseDirectory + @"..\..\..\compiled\ImageCache\";  // haxores
-            #else
-                _cacheLocation = AppDomain.CurrentDomain.BaseDirectory + @"ImageCache\";
-            #endif
         }
 
         public void SaveImage(string cardId, string fileExtension, byte [] image)
