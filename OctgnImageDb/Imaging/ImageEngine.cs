@@ -35,7 +35,7 @@ namespace OctgnImageDb.Imaging
                     (ImageProviderAttribute)
                         provider.GetType().GetCustomAttributes(typeof (ImageProviderAttribute), true).FirstOrDefault();
 
-                if (attribute != null && attribute.GameName.Equals(gameName, StringComparison.CurrentCultureIgnoreCase))
+                if (attribute != null && attribute.GameName.Equals(gameName, StringComparison.OrdinalIgnoreCase))
                     return provider;
             }
 

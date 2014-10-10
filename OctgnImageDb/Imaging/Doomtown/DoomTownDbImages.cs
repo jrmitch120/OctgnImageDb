@@ -51,7 +51,7 @@ namespace OctgnImageDb.Imaging.Doomtown
                 {
                     var card =
                         set.Cards.FirstOrDefault(
-                            c => c.Name.Equals(apiCard.title.ToString(), StringComparison.CurrentCultureIgnoreCase));
+                            c => c.Name.Equals(apiCard.title.ToString(), StringComparison.OrdinalIgnoreCase));
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {
