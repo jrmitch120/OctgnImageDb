@@ -18,7 +18,7 @@ namespace OctgnImageDb.Imaging
         {
             foreach (Game game in games)
             {
-                IImageProvider provider = TryGetRunner(game.Name);
+                IImageProvider provider = TryGetProvider(game.Name);
 
                 if (provider == null)
                     continue;
@@ -27,16 +27,16 @@ namespace OctgnImageDb.Imaging
             }
         }
 
-        private IImageProvider TryGetRunner(string gameName)
+        private IImageProvider TryGetProvider(string gameName)
         {
-            foreach (IImageProvider runner in _providers)
+            foreach (IImageProvider provider in _providers)
             {
                 var attribute =
                     (ImageProviderAttribute)
-                        runner.GetType().GetCustomAttributes(typeof (ImageProviderAttribute), true).FirstOrDefault();
+                        provider.GetType().GetCustomAttributes(typeof (ImageProviderAttribute), true).FirstOrDefault();
 
                 if (attribute != null && attribute.GameName.Equals(gameName, StringComparison.CurrentCultureIgnoreCase))
-                    return runner;
+                    return provider;
             }
 
             return null;
