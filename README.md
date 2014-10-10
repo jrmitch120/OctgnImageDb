@@ -12,6 +12,10 @@ The program will determine which supported games you have installed and attempt 
 
 Image providers are currently as follows:
 
-- [NetrunnerDb (.ca)](http://www.netrunnerdb.ca/ "NetrunnerDb") for Android Netrunner.
+- [NetrunnerDb (It's back!)](http://www.netrunnerdb.com/ "NetrunnerDb") for Android Netrunner.
 - [DoomtownDb](http://dtdb.co/ "DoomtownDb") for Doomtown Reloaded.
 - [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG.
+
+Future Plans Additions
+----------------------
+- Allow image packs to be imported to the image cache

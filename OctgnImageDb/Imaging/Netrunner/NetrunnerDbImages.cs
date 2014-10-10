@@ -9,7 +9,7 @@ namespace OctgnImageDb.Imaging.Netrunner
     [ImageProvider("Android-Netrunner")]
     public class NetrunnerDbImages : IImageProvider
     {
-        private const string ApiBaseUrl = "http://netrunnerdb.ca";
+        private const string ApiBaseUrl = "http://netrunnerdb.com";
         private readonly ImageWriter _imageWriter;
         private readonly ImageCache _cache;
 
