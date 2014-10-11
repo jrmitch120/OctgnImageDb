@@ -38,7 +38,7 @@ namespace OctgnImageDb.Imaging.Doomtown
                 if (set == null || !set.ImagesNeeded)
                 {
                     if(set == null)
-                        LogManager.GetLogger().Log("Unable to map set: set.Name", LogType.Error);
+                        LogManager.GetLogger().Log("Unable to map set: " + setName, LogType.Error);
 
                     continue;
                 }
