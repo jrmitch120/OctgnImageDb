@@ -27,6 +27,12 @@ All images are stored in a single directory labeled *ImageCache*.  File names ar
 
 You can replace or delete any image in the cache as you see fit.
 
+A word of caution
+-----------------
+OctgnImageDb will attempt to download an image for anything not in the *ImageCache* folder.
+
+That means if you have better scans installed than are available online, you'll want to put copies of them in the *ImageCache* folder.  If you don't, they will be overwritten by their online counterparts.  Scans that are already packaged up in .o8c files, can be easily imported as stated above.
+
 Future plans
 ------------
 - TBA
