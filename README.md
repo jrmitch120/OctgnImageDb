@@ -13,7 +13,7 @@ The program will determine which supported games you have installed and attempt 
 
 Image providers are currently as follows:
 
-- [NetrunnerDb (It's back!)](http://www.netrunnerdb.com/ "NetrunnerDb") for Android Netrunner.
+- [Jinteki.net](http://www.jinteki.net/ "Jinteki.net") for Android Netrunner.  (NetrunnerDb has started derezzing their images)
 - [DoomtownDb](http://dtdb.co/ "DoomtownDb") for Doomtown Reloaded.
 - [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG.
 

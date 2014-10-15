@@ -9,7 +9,8 @@ namespace OctgnImageDb.Imaging.Netrunner
     [ImageProvider("Android-Netrunner")]
     public class NetrunnerDbImages : IImageProvider
     {
-        private const string ApiBaseUrl = "http://netrunnerdb.com";
+        private const string ApiBaseUrl = "http://www.jinteki.net";
+
         private readonly ImageWriter _imageWriter;
         private readonly ImageCache _cache;
 
@@ -40,7 +41,7 @@ namespace OctgnImageDb.Imaging.Netrunner
                         
                         if(image == null)
                         {
-                            image = wc.DownloadData(ApiBaseUrl + "/web/bundles/netrunnerdbcards/images/cards/en/" + card.Id.Substring(card.Id.Length - 5) + ".png");
+                            image = wc.DownloadData(ApiBaseUrl + "/img/cards/" + card.Id.Substring(card.Id.Length - 5) + ".png");
                             _cache.SaveImage(card.Id, ".png", image);
                         }
 
