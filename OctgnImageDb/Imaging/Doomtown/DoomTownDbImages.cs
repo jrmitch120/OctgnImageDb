@@ -75,6 +75,8 @@ namespace OctgnImageDb.Imaging.Doomtown
                                 throw;
                         }
                     }
+                    else
+                        LogManager.GetLogger().Log("Unable to find: " + apiCard.title, LogType.Card);
                 }
             }
         }
