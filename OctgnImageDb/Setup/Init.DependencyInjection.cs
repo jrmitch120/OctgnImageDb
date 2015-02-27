@@ -14,7 +14,8 @@ namespace OctgnImageDb.Setup
 
             kernel.Bind<IImageProvider>().To<NetrunnerDbImages>();
             kernel.Bind<IImageProvider>().To<DoomtownDbImages>();
-            kernel.Bind<IImageProvider>().To<TopTierDbImages>();
+            //TopTier seemed to go under.  No reliable source for hi-rez images that I know of anymore
+            //kernel.Bind<IImageProvider>().To<TopTierDbImages>(); 
 
             return kernel;
         }

@@ -49,9 +49,12 @@ namespace OctgnImageDb.Imaging.Doomtown
 
                 foreach (var apiCard in apiCards)
                 {
+                    // There is some inconsitent nameing with é between the definition files and dtdb.  Try both ways if necessary 
                     var card =
                         set.Cards.FirstOrDefault(
-                            c => c.Name.Equals(apiCard.title.ToString(), StringComparison.OrdinalIgnoreCase));
+                            c => c.Name.Equals(apiCard.title.ToString(), StringComparison.OrdinalIgnoreCase)) ??
+                        set.Cards.FirstOrDefault(
+                                c => c.Name.Equals(apiCard.title.ToString().Replace("\u00e9", "e"), StringComparison.OrdinalIgnoreCase));
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {

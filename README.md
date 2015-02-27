@@ -15,7 +15,7 @@ Image providers are currently as follows:
 
 - [Jinteki.net](http://www.jinteki.net/ "Jinteki.net") for Android Netrunner.  (NetrunnerDb has started derezzing their images)
 - [DoomtownDb](http://dtdb.co/ "DoomtownDb") for Doomtown Reloaded.
-- [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG.
+- [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG. **[RETIRED]** - Top Tier's database has gone under. 
 
 Importing image packs (.o8c files)
 ----------------------------------
