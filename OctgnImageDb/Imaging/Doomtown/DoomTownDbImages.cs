@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web.Helpers;
 using OctgnImageDb.Imaging.Cache;
 using OctgnImageDb.Logging;
@@ -38,7 +39,7 @@ namespace OctgnImageDb.Imaging.Doomtown
                 if (set == null || !set.ImagesNeeded)
                 {
                     if(set == null)
-                        LogManager.GetLogger().Log("Unable to map set: " + setName, LogType.Error);
+                        LogManager.GetLogger().Log("Unable to map set: " + setName + ".  It may not be on OCTGN yet.", LogType.Error);
 
                     continue;
                 }
@@ -49,12 +50,16 @@ namespace OctgnImageDb.Imaging.Doomtown
 
                 foreach (var apiCard in apiCards)
                 {
+                    
+                    // Certain card names can found acrosss multiple sets.  DTDB labels them with (Ext.#).  Need to strip that out for OCTGN lookup.
+                    string apiTile = Regex.Replace(apiCard.title.ToString(), @"\(Exp.[\s]*[\d]*\)", "",RegexOptions.IgnoreCase).Trim();
+
                     // There is some inconsitent nameing with é between the definition files and dtdb.  Try both ways if necessary 
                     var card =
                         set.Cards.FirstOrDefault(
-                            c => c.Name.Equals(apiCard.title.ToString(), StringComparison.OrdinalIgnoreCase)) ??
+                            c => c.Name.Equals(apiTile, StringComparison.OrdinalIgnoreCase)) ??
                         set.Cards.FirstOrDefault(
-                                c => c.Name.Equals(apiCard.title.ToString().Replace("\u00e9", "e"), StringComparison.OrdinalIgnoreCase));
+                            c => c.Name.Trim().Equals(apiTile.Replace("\u00e9", "e"), StringComparison.OrdinalIgnoreCase));
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {
