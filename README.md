@@ -13,8 +13,9 @@ The program will determine which supported games you have installed and attempt 
 
 Image providers are currently as follows:
 
-- [Jinteki.net](http://www.jinteki.net/ "Jinteki.net") for Android Netrunner.  (NetrunnerDb has started derezzing their images)
+- [NetrunnerDb.net](http://netrunnerdb.com/ "NetrunnerDb") for Android Netrunner.
 - [DoomtownDb](http://dtdb.co/ "DoomtownDb") for Doomtown Reloaded.
+- [ThronesDb](http://thronesdb.com/ "ThronesDb") for Game of Thrones Lcg 2nd Edition.
 - [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG. **[RETIRED]** - Top Tier's database has gone under. 
 
 Importing image packs (.o8c files)

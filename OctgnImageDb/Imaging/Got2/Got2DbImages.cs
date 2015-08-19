@@ -1,23 +1,21 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Text.RegularExpressions;
 using System.Web.Helpers;
 using OctgnImageDb.Imaging.Cache;
 using OctgnImageDb.Logging;
 using OctgnImageDb.Models;
 using OctgnImageDb.Octgn;
 
-namespace OctgnImageDb.Imaging.Doomtown
+namespace OctgnImageDb.Imaging.Got2
 {
-    [ImageProvider("Doomtown-Reloaded")]
-    public class DoomtownDbImages : IImageProvider
+    [ImageProvider("A Game of Thrones - The Card Game Second Edition")]
+    public class Got2DbImages : IImageProvider
     {
-        private const string ApiBaseUrl = "http://dtdb.co";
+        private const string ApiBaseUrl = "http://188.226.190.230";
         private readonly ImageWriter _imageWriter;
         private readonly ImageCache _cache;
 
-        public DoomtownDbImages(ImageWriter imageWriter, ImageCache cache)
+        public Got2DbImages(ImageWriter imageWriter, ImageCache cache)
         {
             _imageWriter = imageWriter;
             _cache = cache;
@@ -29,7 +27,7 @@ namespace OctgnImageDb.Imaging.Doomtown
 
             var wc = new WebClient();
 
-            dynamic apiSets = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/sets/"));
+            dynamic apiSets = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/packs/"));
 
             foreach (var apiSet in apiSets)
             {
@@ -50,23 +48,7 @@ namespace OctgnImageDb.Imaging.Doomtown
 
                 foreach (var apiCard in apiCards)
                 {
-                    
-                    // Certain card names can found acrosss multiple sets.  DTDB labels them with (Ext.#).  Need to strip that out for OCTGN lookup.
-                    string apiTile = Regex.Replace(apiCard.title.ToString(), @"\(Exp.[\s]*[\d]*\)", "",RegexOptions.IgnoreCase).Trim();
-
-                    var card =
-                        // Standard
-                        set.Cards.FirstOrDefault(
-                            c => c.Name.Equals(apiTile, StringComparison.OrdinalIgnoreCase)) ??
-                        // Try appending a missing the
-                        set.Cards.FirstOrDefault(
-                            c => String.Concat("The ",c.Name).Equals(apiTile, StringComparison.OrdinalIgnoreCase)) ??
-                        // Fun with ampersand
-                        set.Cards.FirstOrDefault(
-                            c => c.Name.Replace("&"," & ").Equals(apiTile, StringComparison.OrdinalIgnoreCase)) ??
-                        // There is some inconsitent nameing with é between the definition files and dtdb.  Try both ways if necessary 
-                        set.Cards.FirstOrDefault(
-                            c => c.Name.Trim().Equals(apiTile.Replace("\u00e9", "e"), StringComparison.OrdinalIgnoreCase));
+                    var card = set.Cards.FirstOrDefault(c => c.Id.Equals(apiCard.octgnid));
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {

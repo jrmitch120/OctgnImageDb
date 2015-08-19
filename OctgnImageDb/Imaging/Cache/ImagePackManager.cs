@@ -40,7 +40,6 @@ namespace OctgnImageDb.Imaging.Cache
                             var iw = new ImageWriter();
                             using (var image = entry.Open())
                             {
-                                
                                 iw.WriteImage(_cacheLocation + entry.Name, image);
                             }
                         }

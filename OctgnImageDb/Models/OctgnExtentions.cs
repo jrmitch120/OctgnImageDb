@@ -8,11 +8,11 @@ namespace OctgnImageDb.Models
     {
         public static Set FindSetByName(this List<Set> sets, string name)
         {
-            return sets.FirstOrDefault(s => s.Name.Equals(name, StringComparison.OrdinalIgnoreCase)) ??
+            return sets.FirstOrDefault(s => s.Name.IndexOf(name, StringComparison.OrdinalIgnoreCase) >= 0) ??
                    sets.FirstOrDefault(
                        s =>
-                           s.Name.Equals(name.Replace("&", "and").Replace("Base", "Core"),
-                               StringComparison.OrdinalIgnoreCase));
+                           s.Name.IndexOf(name.Replace("&", "and").Replace("Base", "Core"),
+                               StringComparison.OrdinalIgnoreCase) >= 0);
 
 
         }

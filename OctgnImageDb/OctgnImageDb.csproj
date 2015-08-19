@@ -57,6 +57,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -68,6 +69,7 @@
     <Compile Include="Imaging\Cache\ImageCache.cs" />
     <Compile Include="Imaging\Cache\CachePaths.cs" />
     <Compile Include="Imaging\Doomtown\DoomTownDbImages.cs" />
+    <Compile Include="Imaging\Got2\Got2DbImages.cs" />
     <Compile Include="Imaging\IImageProvider.cs" />
     <Compile Include="Imaging\ImageEngine.cs" />
     <Compile Include="Imaging\Cache\ImagePackManager.cs" />
