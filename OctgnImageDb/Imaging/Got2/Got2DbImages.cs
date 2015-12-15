@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Helpers;
 using OctgnImageDb.Imaging.Cache;
@@ -11,7 +12,7 @@ namespace OctgnImageDb.Imaging.Got2
     [ImageProvider("A Game of Thrones - The Card Game Second Edition")]
     public class Got2DbImages : IImageProvider
     {
-        private const string ApiBaseUrl = "http://188.226.190.230";
+        private const string ApiBaseUrl = "http://thronesdb.com";
         private readonly ImageWriter _imageWriter;
         private readonly ImageCache _cache;
 
@@ -27,12 +28,15 @@ namespace OctgnImageDb.Imaging.Got2
 
             var wc = new WebClient();
 
-            dynamic apiSets = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/packs/"));
+            dynamic apiSets = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/public/packs/"));
 
             foreach (var apiSet in apiSets)
             {
+                // The maintainers of Got2 appear to be colapsing all cycle packs into a single set, so we have
+                // to grab the set by the cycle number.
                 string setName = apiSet.name;
-                var set = game.Sets.FindSetByName(setName);
+                int cycle = apiSet.cycle_position;
+                var set = game.Sets.SingleOrDefault(s => s.Name.StartsWith(cycle.ToString().PadLeft(2,'0')));
 
                 if (set == null || !set.ImagesNeeded)
                 {
@@ -42,9 +46,9 @@ namespace OctgnImageDb.Imaging.Got2
                     continue;
                 }
 
-                LogManager.GetLogger().Log(set.Name, LogType.Set);
+                LogManager.GetLogger().Log(set.Name + ": " + apiSet.name, LogType.Set);
 
-                dynamic apiCards = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/set/" + apiSet.code));
+                dynamic apiCards = Json.Decode(wc.DownloadString(ApiBaseUrl + "/api/public/cards/" + apiSet.code));
 
                 foreach (var apiCard in apiCards)
                 {
