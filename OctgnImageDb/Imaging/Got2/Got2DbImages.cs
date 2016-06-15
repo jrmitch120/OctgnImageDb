@@ -52,7 +52,7 @@ namespace OctgnImageDb.Imaging.Got2
 
                 foreach (var apiCard in apiCards)
                 {
-                    var card = set.Cards.FirstOrDefault(c => c.Id.Equals(apiCard.octgnid));
+                    var card = set.Cards.FirstOrDefault(c => c.Id.Equals(apiCard.octgn_id));
 
                     if (card != null && apiCard.imagesrc != string.Empty)
                     {
