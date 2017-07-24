@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web.Helpers;
@@ -34,7 +32,7 @@ namespace OctgnImageDb.Imaging.LotR
             foreach (var apiSet in apiSets)
             {
                 string setName = apiSet.name;
-                int cycle = apiSet.cycle_position;
+                
 				//I needed to match the sets using a custom method since there were no identifying marks except for the actual name.
                 var set = game.Sets.SingleOrDefault(s => StringExtensions.CustomContains(s.Name, setName));
 

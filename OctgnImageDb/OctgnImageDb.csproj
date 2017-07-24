@@ -74,6 +74,8 @@
     <Compile Include="Imaging\ImageEngine.cs" />
     <Compile Include="Imaging\Cache\ImagePackManager.cs" />
     <Compile Include="Imaging\ImageProviderAttribute.cs" />
+    <Compile Include="Imaging\LotR\LotrDBImages.cs" />
+    <Compile Include="Imaging\LotR\StringExtensions.cs" />
     <Compile Include="Imaging\Netrunner\NetrunnerDbImages.cs" />
     <Compile Include="Imaging\Starwars\TopTierDbImages.cs" />
     <Compile Include="Logging\ConsoleLogFactory.cs" />
