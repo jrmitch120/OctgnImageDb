@@ -15,7 +15,7 @@ Image providers are currently as follows:
 
 - [NetrunnerDb.net](http://netrunnerdb.com/ "NetrunnerDb") for Android Netrunner.
 - [DoomtownDb](http://dtdb.co/ "DoomtownDb") for Doomtown Reloaded.
-- [RingsDb] (http://ringsdb.com/ "RingsDb") for Lord of the Rings Lcg.
+- [RingsDb](http://ringsdb.com/ "RingsDb") for Lord of the Rings Lcg.
 - [ThronesDb](http://thronesdb.com/ "ThronesDb") for Game of Thrones Lcg 2nd Edition.
 - [TopTierGaming](http://toptiergaming.com/database.php "TopTierGaming") for Star Wars LCG. **[RETIRED]** - Top Tier's database has gone under. 
 
@@ -37,7 +37,7 @@ That means if you have better scans installed than are available online, you'll 
 
 Contributions
 ------------
-Hackmodford - LOTR image provider.
+[Hackmodford](https://github.com/Hackmodford) - LOTR image provider.
 
 Future plans
 ------------
